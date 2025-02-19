@@ -274,4 +274,7 @@ span{
         padding: 7px;
         gap: 2px;
     }
+    .question-con{
+        padding: 10px;
+    }
 }
