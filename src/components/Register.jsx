@@ -9,27 +9,44 @@ const Register = () => {
   const [username, setUsername] = useState("");
   //const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [check, setCheck] = useState(false)
   const navigate = useNavigate()
+
+  const handleChange = () =>{
+    setCheck(true);
+  }
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     
     // Ensure username and password are not empty
-    if (!username || !password) {
-      alert('Please provide both username and password');
-      return;
-    }
-  
-    try {
-      await axios.post("https://neet-backend1.onrender.com/register", {
-        username,
-        password,
-      });
-      alert("Registered successfully! Please login.");
-      navigate("/login");
-    } catch (err) {
-      alert(err.response?.data?.error || "An error occurred during registration");
-      console.error("Registration error", err);
+    if (check){
+      if (!username || !password) {
+        alert('Please provide both username and password');
+        return;
+      }
+      if (username.length<5){
+        alert('User Name should be of atleast 5 characters');
+        return;
+      }
+      if (password.length<8){
+        alert('Password should be of atleast 8 characters');
+        return;
+      }
+    
+      try {
+        await axios.post("https://neet-backend1.onrender.com/register", {
+          username,
+          password,
+        });
+        alert("Registered successfully! Please login.");
+        navigate("/login");
+      } catch (err) {
+        alert(err.response?.data?.error || "An error occurred during registration");
+        console.error("Registration error", err);
+      }
+    } else{
+      alert("Please obey the terms and conditions to proceed")
     }
   };
   
@@ -39,12 +56,18 @@ const Register = () => {
         <h1>Create Account</h1>
         <form  onSubmit={onSubmitHandler}  action="" className="loginForm">
             <h2>SignUp</h2>
-            <input onChange={(e)=>setUsername(e.target.value)} value={username} type="text" placeholder='User Name' className="inputs" required/>
+            <div>
+              <input onChange={(e)=>setUsername(e.target.value)} value={username} type="text" placeholder='User Name' className="inputs" required/>
+              {username.length<5? <p className={`usr ${(username.length===0)? 'usr0':""}`}>User Name should be of atleast 5 characters</p>:null}
+            </div>
             {/* <input onChange={(e)=>setEmail(e.target.value)} value={email} type="email" placeholder='Email Address' className="inputs" required/> */}
-            <input onChange={(e)=>setPassword(e.target.value)} value={password} type="password" placeholder='Password' className="inputs" required/>
+            <div>
+              <input onChange={(e)=>setPassword(e.target.value)} value={password} type="password" placeholder='Password' className="inputs" required/>
+              {password.length<8? <p className={`usr ${(username.length===0)? 'usr0':""}`}>Password should be of atleast 8 characters</p>:null}
+            </div>
             <button type= 'submit' className="btn">Create account</button>
             <div className="obey-terms">
-                <input type="checkbox" />
+                <input type="checkbox" onChange={handleChange}/>
                 <p>Agree to the terms of use & privacy policy.</p>
             </div>
             <div className="signup">

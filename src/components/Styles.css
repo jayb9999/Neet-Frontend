@@ -7,7 +7,7 @@
     justify-content: space-evenly;
 }
 .loginForm{
-    background-color: white;
+    background-color: transparent;
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -19,13 +19,11 @@
     border-radius: 4px;
     border: 1px solid aqua;
     outline-color: blue;
+    width: auto;
 }
-h2{
-    color: aqua;
-    font-weight: 450;
-}
-h1{
+h2, h1{
     color: blue;
+    font-weight: 450;
 }
 button{
     padding: 7px 11px;
@@ -54,6 +52,14 @@ span{
     gap: 5px;
     font-size: 12px;
     display: flex;
+}
+.usr{
+    font-size: 10px;
+    color: orangered;
+    margin-top: 0;
+}
+.usr0{
+    color: beige;
 }
 
 .home{
@@ -148,10 +154,13 @@ span{
 .questions-navigation{
     background-color: rgb(182, 245, 203);
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
     gap: 4px;
     padding: 15px;
+}
+.questions-navigation ::-webkit-scrollbar{
+    height: 2px;
 }
 .quit-button-con{
     text-align: end;
@@ -227,4 +236,42 @@ span{
 }
 .backBtn{
     margin: 20px;
+}
+.spinner{
+    margin-left: 50%;
+    margin-top: 50%;
+}
+
+
+
+
+@media (max-width: 768px) {
+    .login{
+        background-image: url('https://i.imgur.com/Gv1I6DS.jpeg');
+        flex-direction: column;
+        color: beige;
+        font-size: 14px;
+    }
+    .login h1{
+        text-align: center;
+    }
+    .loginForm{
+        background-color: transparent;
+    }
+    .question-con{
+        font-size: 14px;
+        padding: 8px 8px;
+        padding-bottom: 16px;
+    }
+    .title-con{
+        font-size: 16px;
+    }
+    .option{
+        font-size: 12.5px;
+        padding: 5px;
+    }
+    .questions-navigation{
+        padding: 7px;
+        gap: 2px;
+    }
 }

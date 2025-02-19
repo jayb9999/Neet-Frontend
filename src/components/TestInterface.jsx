@@ -3,6 +3,7 @@ import './Styles.css'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { ClipLoader } from "react-spinners";
 
 const TestInterface = () => {
   const [questions, setQuestions] = useState([]);
@@ -95,7 +96,7 @@ useEffect(() => {
 
   // Prevent rendering errors before data loads
   if (questions.length === 0) {
-    return <p>Loading questions...</p>;
+    return <ClipLoader className="spinner" color="#3498db" size={50} />;
   }
 
   const attemptedCount = Object.keys(selectedOptions).length;
