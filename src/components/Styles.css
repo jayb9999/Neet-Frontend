@@ -1,0 +1,230 @@
+.login{
+    background-image: url('https://i.imgur.com/5oRTs3p.jpeg');
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.loginForm{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+    border-radius: 12px;
+}
+.inputs{
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid aqua;
+    outline-color: blue;
+}
+h2{
+    color: aqua;
+    font-weight: 450;
+}
+h1{
+    color: blue;
+}
+button{
+    padding: 7px 11px;
+    background-color: aquamarine;
+    font-size: 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+.signup{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.toggletosignup{
+    color: grey;
+    font-size: 13px;
+}
+span{
+    font-weight: 450;
+    color: blue;
+    cursor: pointer;
+}
+.obey-terms{
+    color: grey;
+    gap: 5px;
+    font-size: 12px;
+    display: flex;
+}
+
+.home{
+    flex-direction: column;
+}
+.homeCreds{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.test-container{
+    padding: 10px;
+    background: linear-gradient(aqua,rgb(202, 232, 238),aqua);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.title-con{
+    display: flex;
+    justify-content: space-between;
+    font-size: x-large;
+    font-weight: bold;
+}
+.timer{
+    color: blue;
+}
+.timer-alert{
+    color: red;
+    animation: blink-animation 1s infinite;
+}
+@keyframes blink-animation {
+    50% {
+        opacity: 0;
+    }
+}
+.question-con{
+    background-color: antiquewhite;
+    padding: 10px 30px;
+    padding-bottom: 30px;
+    width: 75%;
+    border-radius: 10px;
+    align-self: center;
+    text-align: center;
+}
+.qtn-sub{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+.subject-name{
+    color: green;
+    font-size: large;
+    font-weight: normal;
+}
+.qtn{
+    color: brown;
+    padding-bottom: 10px;
+}
+.qtnImg{
+    padding: 10px;
+    padding-bottom: 10px;
+    height: 220px;
+    width: 350px;
+}
+.options{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    text-align: start;
+}
+.radio{
+    margin-right: 5px;
+}
+.option{
+    font-size: large;
+    padding: 10px;
+}
+.question-summary{
+    display: flex;
+    justify-content: end;
+}
+.qtn-sumry{
+    padding: 10px;
+}
+.navigation-buttons{
+    margin: 15px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+.questions-navigation{
+    background-color: rgb(182, 245, 203);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+    padding: 15px;
+}
+.quit-button-con{
+    text-align: end;
+}
+.quit-button{
+    color: red;
+    margin-top: 15px;
+}
+.active{
+    background-color: blue;
+    border-radius: 0px;
+}
+
+.dashboard-con{
+    background-color: aqua;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 20px;
+    padding-top: 30px;
+    text-align: center;
+}
+.lists-con{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.test-title{
+    background-color: aliceblue;
+    padding: 20px;
+    border-radius: 8px;
+    font-style: oblique;
+    font-size: larger;
+    font-weight: bolder;
+}
+
+/* .scoreboard{
+    
+} */
+.details{
+    background-color: blanchedalmond;
+    border-radius: 10px;
+    margin: 20px;
+    padding: 10px 20px;
+    text-align: start;
+}
+.scoreSmry{
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+.atmpd{
+    border-color: aqua;
+    border: 1px solid aqua;
+    padding: 10px;
+    border-radius: 10px;
+}
+.nAtmpd{
+    border-color: orange;
+}
+.atmpd-list{
+    padding: 10px;
+}
+.wrng{
+    border-color: red;
+}
+.right{
+    border-color: green;
+}
+.backBtn{
+    margin: 20px;
+}
