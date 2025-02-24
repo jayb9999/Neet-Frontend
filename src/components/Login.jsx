@@ -1,14 +1,25 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Styles.css'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Navigate } from 'react-router-dom'
 import axios from "axios";
 import Cookies from 'js-cookie'
+import { toast } from "react-toastify";
 //import { signin } from '../../config/firebase'
 
 const Login = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const jwtToken = Cookies.get("jwtToken")
+    if (jwtToken) {
+      //alert("You are already LoggedIn.\nPlease Click OK to continue");
+      toast.success("You are already LoggedIn.")
+      navigate("/available-tests");
+      return;//<Navigate to="/available-tests" replace />;
+    }
+  }, [])
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -22,20 +33,30 @@ const Login = () => {
       // Save the JWT token to cookies
       //console.log(res.data)
       Cookies.set('jwtToken', res.data.jwtToken, { expires: 1 });
-      alert("Login Successful");
+      //alert("Login Successful");
+      toast.success("Login Successful")
   
       // Navigate to the dashboard
-      navigate("/dashboard");
+      navigate("/available-tests");
     } catch (err) {
       //console.error("Login error", err);
       //alert("Invalid credentials");
+      toast.error("Invalid credentials", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+      });
     }
   };
   
 
   return (
     <div className='login'>
-        <h1>Sign In</h1>
+        <h1 className='loginHead'>Sign In</h1>
         <form onSubmit={onSubmitHandler} action="" className="loginForm">
             <h2>LogIn</h2>
             <input onChange={(e)=>setUsername(e.target.value)} value={username} type="text" placeholder='User Name' className="inputs" required/>

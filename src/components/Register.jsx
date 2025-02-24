@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import './Styles.css'
 import { useNavigate } from 'react-router-dom'
 import axios from "axios";
+import { toast } from "react-toastify";
 //import { signup } from '../../config/firebase'
 
 const Register = () => {
@@ -39,21 +40,40 @@ const Register = () => {
           username,
           password,
         });
-        alert("Registered successfully! Please login.");
+        //alert("Registered successfully! Please login.");
+        toast.success("Registered successfully! Please login.")
         navigate("/login");
       } catch (err) {
         alert(err.response?.data?.error || "An error occurred during registration");
         console.error("Registration error", err);
+        toast.error(err.response?.data?.error || "An error occurred during registration", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "colored",
+        });
       }
     } else{
-      alert("Please obey the terms and conditions to proceed")
+      //alert("Please obey the terms and conditions to proceed")
+      toast.error("Please obey the terms and conditions to proceed", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+      });
     }
   };
   
 
   return (
     <div className='login'>
-        <h1>Create Account</h1>
+        <h1 className='loginHead'>Create Account</h1>
         <form  onSubmit={onSubmitHandler}  action="" className="loginForm">
             <h2>SignUp</h2>
             <div>

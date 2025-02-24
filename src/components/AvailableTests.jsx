@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie'
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import './Styles.css'
 
 const tests = [
@@ -85,14 +87,70 @@ const tests = [
   },
 ]
 
-const Dashboard = () => {
+const AvailableTests = () => {
   //const [tests, setTests] = useState([]);
   const navigate = useNavigate();
   const jwtToken = Cookies.get('jwtToken')
 
+  const showToast = () => {
+    // Add overlay when toast appears
+    const overlay = document.createElement("div");
+    overlay.className = "toast-overlay";
+    document.body.appendChild(overlay);
+  
+    // Disable background interactions
+    const mainContent = document.getElementById("main-content"); // The main app container
+    if (mainContent) mainContent.classList.add("toast-disable-background");
+  
+    const toastId = toast.info(
+      <div>
+        <p>Click OK to start your test.<br />All the best.</p>
+        <button
+          onClick={() => {
+            toast.dismiss(toastId);
+            cleanup(); // Restore main content
+            setTimeout(() => navigate("/test"), 0);
+          }}
+          style={{ marginRight: "10px" }}
+        >
+          OK
+        </button>
+        <button
+          onClick={() => {
+            toast.dismiss(toastId);
+            cleanup(); // Restore main content
+          }}
+        >
+          Cancel
+        </button>
+      </div>,
+      {
+        position: "top-center",
+        autoClose: false,
+        closeOnClick: false,
+        draggable: false,
+        onClose: cleanup,
+      }
+    );
+
+    function cleanup() {
+      if (mainContent) mainContent.classList.remove("toast-disable-background");
+      if (document.body.contains(overlay)) document.body.removeChild(overlay);
+    }
+  };
+
   const handleLogout = () =>{
-    Cookies.remove(jwtToken);
-    alert('You are logged out.');
+    Cookies.remove('jwtToken');
+    //alert('You are logged out.');
+    toast.error("You are logged out.", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "colored",
+    });
     navigate('/login');
   }
 
@@ -108,23 +166,18 @@ const Dashboard = () => {
   //   fetchTests();
   // }, []);
 
-  const handleStart = () => {
-    alert("Click Ok to start your test.\n All the best.")
-    navigate(`/test`)
-  }
-
   return (
     <div className="dashboard-con">
       <h1>Available Tests</h1>
       <ul className="lists-con">
         {
           tests.map((item, id) => (
-            <li className="test-title" key={id} onClick={() => navigate(`/test`)}>
+            <li className="test-title" key={id}>
               <h3>{item.title}</h3>
               <p>Number of Questions : {item.noofquestions}</p>
               <p>Duration : {item.time}</p>
               <p>Click the below start button to write an exam</p>
-              <button onClick={handleStart}>Start</button>
+              <button onClick={showToast}>Start</button>
             </li>
           ))
         }
@@ -149,4 +202,4 @@ const Dashboard = () => {
   );
 }
 
-export default Dashboard;
+export default AvailableTests;
